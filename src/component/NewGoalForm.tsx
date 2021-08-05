@@ -1,25 +1,25 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const NewGoalForm = () => {
+const NewGoalForm = ({ handleSubmit }: any) => {
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Label for="goalName">Название цели</Label>
-        <Input type="text" name="goalName" id="goalName" placeholder="Название цели" />
+        <Input type="text" name="goalName" id="goalName" placeholder="Название цели"/>
       </FormGroup>
       <FormGroup>
         <Label for="goalUnits">Ед. измерения</Label>
-        <Input type="text" name="units" id="goalUnits" placeholder="Ед. измерения" />
+        <Input type="text" name="goalUnits" id="goalUnits" placeholder="Ед. измерения"/>
       </FormGroup>
       <FormGroup>
         <Label for="goalValue">Цель на неделю</Label>
-        <Input type="text" name="goalValue" id="goalValue" placeholder="Цель на неделю" />
+        <Input type="text" name="goalValue" id="goalValue" placeholder="Цель на неделю"/>
       </FormGroup>
       <FormGroup>
         <Label for="goalCurrent">Сделано</Label>
-        <Input type="text" name="goalValue" id="goalCurrent" placeholder="Сделано" />
+        <Input type="text" name="goalCurrent" id="goalCurrent" placeholder="Сделано"/>
       </FormGroup>
       <Button color="primary">Добавить</Button>
     </Form>

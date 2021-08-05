@@ -23,9 +23,9 @@ function App() {
       }
     ]);
 
-  const addGoal = (id: number, name: string, units: string, value: number, currentValue: number) => {
+  const addGoal = (name: string, units: string, value: number, currentValue: number) => {
     setGoals(
-      [...goals, { id: id, goalName: name, units: units, goalValue: value, currentValue: currentValue }]
+      [...goals, { id: goals.length + 1, goalName: name, units: units, goalValue: value, currentValue: currentValue }]
     )
   }
 
