@@ -34,10 +34,7 @@ function App() {
 
   const moveGoalUp = (id: any) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
-    if (goalIndex === 0) {
-      alert('Да куда уж выше-то!');
-      return;
-    }
+    if (goalIndex === 0) return;
 
     let goalsCopy = [...goals];
     [goalsCopy[goalIndex], goalsCopy[goalIndex - 1]] = [goalsCopy[goalIndex - 1], goalsCopy[goalIndex]];
@@ -46,10 +43,7 @@ function App() {
 
   const moveGoalDown = (id: any) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
-    if (!goals[goalIndex + 1]) {
-      alert('Ниже только адские планеты :)');
-      return;
-    }
+    if (!goals[goalIndex + 1]) return;
 
     let goalsCopy = [...goals];
     [goalsCopy[goalIndex], goalsCopy[goalIndex + 1]] = [goalsCopy[goalIndex + 1], goalsCopy[goalIndex]];
