@@ -11,7 +11,7 @@ function App() {
   );
 
   useEffect(() => {
-localStorage.setItem('goals', JSON.stringify(goals))
+    localStorage.setItem('goals', JSON.stringify(goals))
   }, [goals])
 
   const addGoal = (goalItem: GoalsType) => {
@@ -21,17 +21,42 @@ localStorage.setItem('goals', JSON.stringify(goals))
   };
 
   const deleteGoal = (id: number) => {
-    setGoals (
+    setGoals(
       goals.filter((item: any) => item.id !== id)
     )
   };
+
+  const moveGoalUp = (id: any) => {
+    const goalIndex = goals.findIndex((element: any) => element.id === id);
+    if (goalIndex === 0) {
+      alert('Да куда уж выше-то!');
+      return;
+    }
+
+    let goalsCopy = [...goals];
+    [goalsCopy[goalIndex], goalsCopy[goalIndex - 1]] = [goalsCopy[goalIndex - 1], goalsCopy[goalIndex]];
+    setGoals(goalsCopy);
+  };
+
+  const moveGoalDown = (id: any) => {
+    const goalIndex = goals.findIndex((element: any) => element.id === id);
+    if (goalIndex === 0) {
+      alert('Ниже только адские планеты :)');
+      return;
+    }
+
+    let goalsCopy = [...goals];
+    [goalsCopy[goalIndex], goalsCopy[goalIndex + 1]] = [goalsCopy[goalIndex + 1], goalsCopy[goalIndex]];
+    setGoals(goalsCopy);
+  };
+
 
   return (
     <div className='App'>
       <div className='AppContainer'>
         <h1>Трекер целей на неделю</h1>
-      <NewGoalModal buttonLabel={'Добавьте цель'} addGoal={addGoal}/>
-      <GoalsTable goals={goals} deleteGoal={deleteGoal}/>
+        <NewGoalModal buttonLabel={'Добавьте цель'} addGoal={addGoal}/>
+        <GoalsTable goals={goals} deleteGoal={deleteGoal} moveGoalUp={moveGoalUp} moveGoalDown={moveGoalDown}/>
       </div>
     </div>
   );

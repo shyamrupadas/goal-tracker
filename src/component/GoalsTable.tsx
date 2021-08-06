@@ -3,14 +3,12 @@ import { Table } from 'reactstrap';
 import Goal from './Goal';
 import { GoalsType } from '../types/types';
 
-const GoalsTable = ({ goals, deleteGoal }: any) => {
+const GoalsTable = ({ goals, deleteGoal, moveGoalUp, moveGoalDown }: any) => {
 
-  const goalElements = goals.map((g: GoalsType) => <Goal key={g.id}
-                id={g.id}
-                goalName={g.goalName}
-                units={g.units}
-                goalValue={g.goalValue}
-                currentValue={g.currentValue} deleteGoal={deleteGoal}/>
+  const goalElements = goals.map((g: GoalsType) => <Goal
+    key={g.id} id={g.id} goalName={g.goalName} units={g.units}
+    goalValue={g.goalValue} currentValue={g.currentValue}
+    deleteGoal={deleteGoal} moveGoalUp={moveGoalUp} moveGoalDown={moveGoalDown}/>
   );
 
   return (
