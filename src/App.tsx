@@ -10,14 +10,21 @@ function App() {
     JSON.parse(localStorage.getItem('goals') as string) || []
   );
 
-  useEffect(() => {
-    localStorage.setItem('goals', JSON.stringify(goals))
-  }, [goals])
-
   const addGoal = (goalItem: GoalsType) => {
     setGoals(
       [...goals, goalItem]
     )
+  };
+
+  const changeGoal = (goal: GoalsType) => {
+    // const goalIndex = goals.findIndex((element: any) => element.id === goal.id);
+    goals.map((el: any) =>
+      goal.id === el.id ? {
+        ...el, goalName: goal.goalName, units: goal.units,
+        goalValue: goal.goalValue, currentValue: goal.currentValue
+      } : el);
+    debugger;
+    setGoals([...goals]);
   };
 
   const deleteGoal = (id: number) => {
@@ -50,13 +57,18 @@ function App() {
     setGoals(goalsCopy);
   };
 
+  useEffect(() => {
+    debugger;
+    localStorage.setItem('goals', JSON.stringify(goals))
+  }, [goals]);
 
   return (
     <div className='App'>
       <div className='AppContainer'>
         <h1>Трекер целей на неделю</h1>
         <NewGoalModal buttonLabel={'Добавьте цель'} addGoal={addGoal}/>
-        <GoalsTable goals={goals} deleteGoal={deleteGoal} moveGoalUp={moveGoalUp} moveGoalDown={moveGoalDown}/>
+        <GoalsTable goals={goals} deleteGoal={deleteGoal} moveGoalUp={moveGoalUp}
+                    moveGoalDown={moveGoalDown} changeGoal={changeGoal}/>
       </div>
     </div>
   );

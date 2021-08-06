@@ -14,7 +14,7 @@ const NewGoalModal = ({addGoal, ...props}: any) => {
   const toggle = () => setModal(!modal);
 
   const handleSubmit = (e: any) => {
-    const goalItem = {
+    const goal = {
       id: uuidv4(),
       goalName: e.target.elements.goalName.value,
       units: e.target.elements.goalUnits.value,
@@ -23,7 +23,7 @@ const NewGoalModal = ({addGoal, ...props}: any) => {
     }
     e.preventDefault();
     toggle();
-    addGoal(goalItem);
+    addGoal(goal);
   }
 
   return (

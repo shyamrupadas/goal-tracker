@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 
-const GoalItem = ({ goalItemProp }: any) => {
+const GoalItem = ({ goalItemProp, changeGoalItem }: any) => {
 
-  const [editMode, toggleEditMode] = useState(false);
-  const onToggleEditMode = () => toggleEditMode(!editMode);
+  const [goalItem, setGoalItem] = useState(goalItemProp);
 
-  const [goalName, setGoalName] = useState(goalItemProp);
+  let [editMode, changeEditMode] = useState(false);
+  const activateEditMode = () => changeEditMode(editMode = true);
+  const deactivateEditMode = () => {
+    changeEditMode(editMode = false);
+    changeGoalItem(goalItem);
+  };
 
   const keyPress = (e: any) => {
     const code = e.keyCode || e.which;
     if (code === 13) {
-      onToggleEditMode();
+      deactivateEditMode();
     }
   };
 
-    return (
-      <td onClick={onToggleEditMode}>{
-        editMode
-        ? <input onChange={(e) => setGoalName(e.target.value)}
-                 onKeyPress={e => keyPress(e)} onBlur={onToggleEditMode}
-                 autoFocus={true} type="text" value={goalName}/>
-        : goalName}</td>
-    )
+  return (
+    <td onDoubleClick={activateEditMode}>{
+      editMode
+        ? <input onChange={(e) => setGoalItem(e.target.value)}
+                 onKeyPress={e => keyPress(e)} onBlur={deactivateEditMode}
+                 autoFocus={true} type="text" value={goalItem}/>
+        : goalItem}</td>
+  )
 }
 
 export default GoalItem;
