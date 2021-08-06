@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const GoalItem = ({ goalItemProp, changeGoalItem }: any) => {
+const GoalItem = ({ itemKey, goalItemProp, changeGoalItem }: any) => {
 
   const [goalItem, setGoalItem] = useState(goalItemProp);
 
@@ -8,7 +8,7 @@ const GoalItem = ({ goalItemProp, changeGoalItem }: any) => {
   const activateEditMode = () => changeEditMode(editMode = true);
   const deactivateEditMode = () => {
     changeEditMode(editMode = false);
-    changeGoalItem(goalItem);
+    changeGoalItem(goalItem, itemKey);
   };
 
   const keyPress = (e: any) => {

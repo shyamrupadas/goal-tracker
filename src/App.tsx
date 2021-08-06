@@ -17,14 +17,13 @@ function App() {
   };
 
   const changeGoal = (goal: GoalsType) => {
-    // const goalIndex = goals.findIndex((element: any) => element.id === goal.id);
-    goals.map((el: any) =>
+
+    const newGoals = goals.map((el: any) =>
       goal.id === el.id ? {
         ...el, goalName: goal.goalName, units: goal.units,
         goalValue: goal.goalValue, currentValue: goal.currentValue
       } : el);
-    debugger;
-    setGoals([...goals]);
+    setGoals([...newGoals]);
   };
 
   const deleteGoal = (id: number) => {
@@ -58,7 +57,6 @@ function App() {
   };
 
   useEffect(() => {
-    debugger;
     localStorage.setItem('goals', JSON.stringify(goals))
   }, [goals]);
 
