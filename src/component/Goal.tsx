@@ -18,13 +18,15 @@ const Goal = ({
     changeGoal(goal);
   };
 
+  const progressValue = Math.round(currentValue / goalValue * 100)
+
   return (
     <tr>
       <GoalItem goalItemProp={goalName} changeGoalItem={changeGoalItem}/>
       <GoalItem goalItemProp={units} changeGoalItem={changeGoalItem}/>
       <GoalItem goalItemProp={goalValue} changeGoalItem={changeGoalItem}/>
       <GoalItem goalItemProp={currentValue} changeGoalItem={changeGoalItem}/>
-      <td>{Math.round(currentValue / goalValue * 100)}%</td>
+      <td>{progressValue ? progressValue + '%' : '-'}</td>
       <td><Button outline color="secondary" size="sm" onClick={() => deleteGoal(id)}>x</Button></td>
       <td onClick={() => moveGoalUp(id)}>&#8593;</td>
       <td onClick={() => moveGoalDown(id)}>&#8595;</td>
