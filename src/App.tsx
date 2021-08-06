@@ -14,8 +14,6 @@ function App() {
 localStorage.setItem('goals', JSON.stringify(goals))
   }, [goals])
 
-
-
   const addGoal = (goalItem: GoalsType) => {
     setGoals(
       [...goals, goalItem]
@@ -27,7 +25,6 @@ localStorage.setItem('goals', JSON.stringify(goals))
       goals.filter((item: any) => item.id !== id)
     )
   };
-
 
   return (
     <div className='App'>

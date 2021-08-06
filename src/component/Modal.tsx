@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import NewGoalForm from './NewGoalForm';
+import { v4 as uuidv4 } from 'uuid';
 
 const NewGoalModal = ({addGoal, ...props}: any) => {
   const {
@@ -14,7 +15,7 @@ const NewGoalModal = ({addGoal, ...props}: any) => {
 
   const handleSubmit = (e: any) => {
     const goalItem = {
-      id: Math.random() * 10,
+      id: uuidv4(),
       goalName: e.target.elements.goalName.value,
       units: e.target.elements.goalUnits.value,
       goalValue: e.target.elements.goalValue.value,

@@ -9,7 +9,7 @@ const Goal = ({ id, goalName, units, goalValue, currentValue, deleteGoal }: any)
       <td>{units}</td>
       <td>{goalValue}</td>
       <td>{currentValue}</td>
-      <td>-</td>
+      <td>{Math.round(currentValue / goalValue * 100)}%</td>
       <td><Button outline color="secondary" size="sm" onClick={() => deleteGoal(id)}>x</Button></td>
     </tr>
   );
