@@ -1,16 +1,16 @@
 import React from 'react';
-import { GoalsType } from '../types/types';
+import { Button } from 'reactstrap';
 
-const Goal: React.FC<GoalsType> = (props) => {
+const Goal = ({ id, goalName, units, goalValue, currentValue, deleteGoal }: any) => {
 
   return (
     <tr>
-      <td>{props.id}</td>
-      <td>{props.goalName}</td>
-      <td>{props.units}</td>
-      <td>{props.goalValue}</td>
-      <td>{props.currentValue}</td>
+      <td>{goalName}</td>
+      <td>{units}</td>
+      <td>{goalValue}</td>
+      <td>{currentValue}</td>
       <td>-</td>
+      <td><Button outline color="secondary" size="sm" onClick={() => deleteGoal(id)}>x</Button></td>
     </tr>
   );
 }

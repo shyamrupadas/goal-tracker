@@ -13,14 +13,16 @@ const NewGoalModal = ({addGoal, ...props}: any) => {
   const toggle = () => setModal(!modal);
 
   const handleSubmit = (e: any) => {
+    const goalItem = {
+      id: Math.random() * 10,
+      goalName: e.target.elements.goalName.value,
+      units: e.target.elements.goalUnits.value,
+      goalValue: e.target.elements.goalValue.value,
+      currentValue: e.target.elements.goalCurrent.value
+    }
     e.preventDefault();
     toggle();
-    addGoal(
-      e.target.elements.goalName.value,
-      e.target.elements.goalUnits.value,
-      e.target.elements.goalValue.value,
-      e.target.elements.goalCurrent.value
-    );
+    addGoal(goalItem);
   }
 
   return (
