@@ -40,7 +40,7 @@ function App() {
 
   const moveGoalDown = (id: any) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
-    if (goalIndex === 0) {
+    if (!goals[goalIndex + 1]) {
       alert('Ниже только адские планеты :)');
       return;
     }
