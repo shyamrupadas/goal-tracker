@@ -4,5 +4,4 @@ export type GoalsType = {
   units: string
   goalValue: number
   currentValue: number
-  progress: number
 };

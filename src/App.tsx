@@ -16,23 +16,23 @@ function App() {
     )
   };
 
-  const changeGoal = (goal: GoalsType) => {
+  const changeGoal = (goalItem: GoalsType) => {
 
     const newGoals = goals.map((el: any) =>
-      goal.id === el.id ? {
-        ...el, goalName: goal.goalName, units: goal.units,
-        goalValue: goal.goalValue, currentValue: goal.currentValue
+      goalItem.id === el.id ? {
+        ...el, goalName: goalItem.goalName, units: goalItem.units,
+        goalValue: goalItem.goalValue, currentValue: goalItem.currentValue
       } : el);
     setGoals([...newGoals]);
   };
 
-  const deleteGoal = (id: number) => {
+  const deleteGoal = (id: string) => {
     setGoals(
       goals.filter((item: any) => item.id !== id)
     )
   };
 
-  const moveGoalUp = (id: any) => {
+  const moveGoalUp = (id: string) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
     if (goalIndex === 0) return;
 
@@ -41,10 +41,9 @@ function App() {
     setGoals(goalsCopy);
   };
 
-  const moveGoalDown = (id: any) => {
+  const moveGoalDown = (id: string) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
     if (!goals[goalIndex + 1]) return;
-
     let goalsCopy = [...goals];
     [goalsCopy[goalIndex], goalsCopy[goalIndex + 1]] = [goalsCopy[goalIndex + 1], goalsCopy[goalIndex]];
     setGoals(goalsCopy);

@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import { GoalsType } from '../types/types';
 
-const GoalItem = ({ itemKey, goalItemProp, changeGoalItem }: any) => {
+type PropsType = {
+  itemKey: string,
+  goalItemProp: string | number
+  changeGoalItem: (itemValue: GoalsType, itemKey: string) => void
+}
+
+const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }: any) => {
 
   const [goalItem, setGoalItem] = useState(goalItemProp);
 

@@ -1,11 +1,20 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import GoalItem from './GoalItem'
+import { GoalsType } from '../types/types';
 
-const Goal = ({
+type PropsType = {
+  goalName: string
+  deleteGoal: (id: string) => void
+  moveGoalUp: (id: string) => void
+  moveGoalDown: (id: string) => void
+  changeGoal: (goalItem: GoalsType) => void
+}
+
+const Goal: React.FC<PropsType & GoalsType> = ({
                 id, goalName, units, goalValue, currentValue,
                 deleteGoal, moveGoalUp, moveGoalDown, changeGoal
-              }: any) => {
+              }) => {
 
   //Пишу мини-редьюсер, не знаю как по-другому сформировать объект с актуальными данными
   const makeGoalReducer: any = (itemValue: any, itemKey: any) => {
@@ -54,7 +63,7 @@ const Goal = ({
 
   };
 
-  const changeGoalItem = (itemValue: any, itemKey: any) => {
+  const changeGoalItem = (itemValue: GoalsType, itemKey: string) => {
     const goal = makeGoalReducer(itemValue, itemKey)
     changeGoal(goal);
   };
