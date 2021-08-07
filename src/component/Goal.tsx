@@ -12,59 +12,51 @@ type PropsType = {
 }
 
 const Goal: React.FC<PropsType & GoalsType> = ({
-                id, goalName, units, goalValue, currentValue,
-                deleteGoal, moveGoalUp, moveGoalDown, changeGoal
-              }) => {
+                                                 id, goalName, units, goalValue, currentValue,
+                                                 deleteGoal, moveGoalUp, moveGoalDown, changeGoal
+                                               }) => {
 
-  //Пишу мини-редьюсер, не знаю как по-другому сформировать объект с актуальными данными
-  const makeGoalReducer: any = (itemValue: any, itemKey: any) => {
+  //Формирую объект с актуальным объектом goal, для изменения в setGoals
+  const makeGoal = (itemValue: string | number, itemKey: string): any => {
+    const goal = {
+      id: id,
+      goalName: goalName,
+      units: units,
+      goalValue: goalValue,
+      currentValue: currentValue
+    };
+
     switch (itemKey) {
       case 'goalName':
         return {
-          id: id,
-          goalName: itemValue,
-          units: units,
-          goalValue: goalValue,
-          currentValue: currentValue
+          ...goal,
+          goalName: itemValue
         };
       case 'units':
         return {
-          id: id,
-          goalName: goalName,
-          units: itemValue,
-          goalValue: goalValue,
-          currentValue: currentValue
+          ...goal,
+          units: itemValue
         };
       case 'goalValue':
         return {
-          id: id,
-          goalName: goalName,
-          units: units,
-          goalValue: itemValue,
-          currentValue: currentValue
+          ...goal,
+          goalValue: itemValue
         };
       case 'currentValue':
         return {
-          id: id,
-          goalName: goalName,
-          units: units,
-          goalValue: goalValue,
+          ...goal,
           currentValue: itemValue
         };
       default:
         return {
-          id: id,
-          goalName: goalName,
-          units: units,
-          goalValue: goalValue,
-          currentValue: currentValue
+          ...goal
         }
     }
 
   };
 
-  const changeGoalItem = (itemValue: GoalsType, itemKey: string) => {
-    const goal = makeGoalReducer(itemValue, itemKey)
+  const changeGoalItem = (goalItem: any, itemKey: string) => {
+    const goal = makeGoal(goalItem, itemKey)
     changeGoal(goal);
   };
 

@@ -3,7 +3,7 @@ import { GoalsType } from '../types/types';
 
 type PropsType = {
   itemKey: string,
-  goalItemProp: string | number
+  goalItemProp: string | number,
   changeGoalItem: (itemValue: GoalsType, itemKey: string) => void
 }
 
