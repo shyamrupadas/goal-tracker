@@ -16,7 +16,7 @@ const Goal: React.FC<PropsType & GoalsType> = ({
                                                  deleteGoal, moveGoalUp, moveGoalDown, changeGoal
                                                }) => {
 
-  //Формирую объект с актуальным объектом goal, для изменения в setGoals
+  // формирую объект с актуальным объектом goal, для изменения в setGoals
   const makeGoal = (itemValue: string | number, itemKey: string): any => {
     const goal = {
       id: id,

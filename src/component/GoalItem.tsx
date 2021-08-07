@@ -9,13 +9,14 @@ type PropsType = {
 
 const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }: any) => {
 
-  const [goalItem, setGoalItem] = useState(goalItemProp);
+  const [goalItemValue, setGoalItemValue] = useState(goalItemProp);
 
+  //todo fix bug about editing 2 and more goal items
   let [editMode, changeEditMode] = useState(false);
   const activateEditMode = () => changeEditMode(editMode = true);
   const deactivateEditMode = () => {
     changeEditMode(editMode = false);
-    changeGoalItem(goalItem, itemKey);
+    changeGoalItem(goalItemValue, itemKey);
   };
 
   const keyPress = (e: any) => {
@@ -28,10 +29,10 @@ const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }
   return (
     <td onDoubleClick={activateEditMode}>{
       editMode
-        ? <input onChange={(e) => setGoalItem(e.target.value)}
+        ? <input onChange={(e) => setGoalItemValue(e.target.value)}
                  onKeyPress={e => keyPress(e)} onBlur={deactivateEditMode}
-                 autoFocus={true} type="text" value={goalItem}/>
-        : goalItem}</td>
+                 type="text" value={goalItemValue}/>
+        : goalItemValue}</td>
   )
 }
 
