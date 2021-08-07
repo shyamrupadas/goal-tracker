@@ -38,7 +38,7 @@ const Goal = ({
         return {
           id: id,
           goalName: goalName,
-          units: itemValue,
+          units: units,
           goalValue: goalValue,
           currentValue: itemValue
         };
