@@ -16,26 +16,23 @@ function App() {
   };
 
   const addGoal = (goalItem: GoalsType) => {
-    const newGoals = [...goals, goalItem]
-    updateGoals(newGoals);
+    updateGoals([...goals, goalItem]);
   };
 
-  const deleteGoal = (id: string) => {
-    const newGoals = goals.filter((item: any) => item.id !== id)
-    updateGoals(newGoals);
-  };
+  const deleteGoal = (id: string) =>
+    updateGoals(goals.filter((item: GoalsType) => item.id !== id));
 
   const changeGoal = (goalItem: GoalsType) => {
-    const newGoals = goals.map((el: any) =>
-      goalItem.id === el.id ? {
-        ...el, goalName: goalItem.goalName, units: goalItem.units,
-        goalValue: goalItem.goalValue, currentValue: goalItem.currentValue
-      } : el);
-    updateGoals(newGoals);
+    updateGoals(
+      goals.map((el: GoalsType) =>
+        goalItem.id === el.id
+          ? { ...el, ...goalItem }
+          : el)
+    );
   };
 
   const moveGoalUp = (id: string) => {
-    const goalIndex = goals.findIndex((element: any) => element.id === id);
+    const goalIndex = goals.findIndex((element: GoalsType) => element.id === id);
     if (goalIndex === 0) return;
 
     let newGoals = [...goals];
