@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import NewGoalModal from './component/Modal';
 import GoalsTable from './component/GoalsTable';
@@ -10,56 +10,54 @@ function App() {
     JSON.parse(localStorage.getItem('goals') as string) || []
   );
 
+  const updateGoals = (newGoals: any) => {
+    setGoals(newGoals);
+    localStorage.setItem('goals', JSON.stringify(newGoals));
+  };
+
   const addGoal = (goalItem: GoalsType) => {
-    setGoals(
-      [...goals, goalItem]
-    )
+    const newGoals = [...goals, goalItem]
+    updateGoals(newGoals);
+  };
+
+  const deleteGoal = (id: string) => {
+    const newGoals = goals.filter((item: any) => item.id !== id)
+    updateGoals(newGoals);
   };
 
   const changeGoal = (goalItem: GoalsType) => {
-
     const newGoals = goals.map((el: any) =>
       goalItem.id === el.id ? {
         ...el, goalName: goalItem.goalName, units: goalItem.units,
         goalValue: goalItem.goalValue, currentValue: goalItem.currentValue
       } : el);
-    setGoals([...newGoals]);
-  };
-
-  const deleteGoal = (id: string) => {
-    setGoals(
-      goals.filter((item: any) => item.id !== id)
-    )
+    updateGoals(newGoals);
   };
 
   const moveGoalUp = (id: string) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
     if (goalIndex === 0) return;
 
-    let goalsCopy = [...goals];
-    [goalsCopy[goalIndex], goalsCopy[goalIndex - 1]] = [goalsCopy[goalIndex - 1], goalsCopy[goalIndex]];
-    setGoals(goalsCopy);
+    let newGoals = [...goals];
+    [newGoals[goalIndex], newGoals[goalIndex - 1]] = [newGoals[goalIndex - 1], newGoals[goalIndex]];
+    updateGoals(newGoals);
   };
 
   const moveGoalDown = (id: string) => {
     const goalIndex = goals.findIndex((element: any) => element.id === id);
     if (!goals[goalIndex + 1]) return;
-    let goalsCopy = [...goals];
-    [goalsCopy[goalIndex], goalsCopy[goalIndex + 1]] = [goalsCopy[goalIndex + 1], goalsCopy[goalIndex]];
-    setGoals(goalsCopy);
+    let newGoals = [...goals];
+    [newGoals[goalIndex], newGoals[goalIndex + 1]] = [newGoals[goalIndex + 1], newGoals[goalIndex]];
+    updateGoals(newGoals);
   };
-
-  useEffect(() => {
-    localStorage.setItem('goals', JSON.stringify(goals))
-  }, [goals]);
 
   return (
     <div className='App'>
       <div className='AppContainer'>
         <h1>Трекер целей на неделю</h1>
-        <NewGoalModal buttonLabel={'Добавьте цель'} addGoal={addGoal}/>
+        <NewGoalModal buttonLabel={'Добавьте цель'} addGoal={addGoal} />
         <GoalsTable goals={goals} deleteGoal={deleteGoal} moveGoalUp={moveGoalUp}
-                    moveGoalDown={moveGoalDown} changeGoal={changeGoal}/>
+                    moveGoalDown={moveGoalDown} changeGoal={changeGoal} />
       </div>
     </div>
   );
