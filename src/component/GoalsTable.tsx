@@ -1,10 +1,19 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import Goal from './Goal';
+import { GoalsItemType } from '../types/types';
 
-const GoalsTable = ({ goals, deleteGoal, moveGoalUp, moveGoalDown, changeGoal }: any) => {
+type GoalsTablePropsType = {
+  goals: [GoalsItemType]
+  deleteGoal: (id: string) => void
+  moveGoalUp: (id: string) => void
+  moveGoalDown: (id: string) => void
+  changeGoal: (goalItem: GoalsItemType) => void
+};
 
-  const goalElements = goals.map((g: any) => <Goal
+const GoalsTable: React.FC<GoalsTablePropsType> = ({ goals, deleteGoal, moveGoalUp, moveGoalDown, changeGoal }) => {
+
+  const goalElements = goals.map((g: GoalsItemType) => <Goal
     key={g.id} goal={g} deleteGoal={deleteGoal}
     moveGoalUp={moveGoalUp} moveGoalDown={moveGoalDown} changeGoal={changeGoal} />);
 

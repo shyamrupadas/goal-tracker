@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { GoalsType } from '../types/types';
+import React, { KeyboardEvent, useState } from 'react';
 
 type PropsType = {
   itemKey: string,
   goalItemProp: string | number,
-  changeGoalItem: (itemValue: GoalsType, itemKey: string) => void
+  changeGoalItem: (goalItem: string | number, itemKey: string) => void
 }
 
-const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }: any) => {
+const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }) => {
 
   const [goalItemValue, setGoalItemValue] = useState(goalItemProp);
 
@@ -19,9 +18,9 @@ const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }
     changeGoalItem(goalItemValue, itemKey);
   };
 
-  const keyPress = (e: any) => {
-    const code = e.keyCode || e.which;
-    if (code === 13) {
+  const keyPress = (e: KeyboardEvent) => {
+    const code = e.key;
+    if (code === 'Enter') {
       deactivateEditMode();
     }
   };

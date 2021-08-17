@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import NewGoalForm from './NewGoalForm';
 import { v4 as uuidv4 } from 'uuid';
+import { GoalsItemType } from '../types/types';
 
 const NewGoalModal = ({addGoal, ...props}: any) => {
   const {
@@ -14,7 +15,7 @@ const NewGoalModal = ({addGoal, ...props}: any) => {
   const toggle = () => setModal(!modal);
 
   const handleSubmit = (e: any) => {
-    const goal = {
+    const goal: GoalsItemType = {
       id: uuidv4(),
       goalName: e.target.elements.goalName.value,
       units: e.target.elements.goalUnits.value,
