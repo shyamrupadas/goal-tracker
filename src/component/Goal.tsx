@@ -11,21 +11,12 @@ type PropsType = {
   changeGoal: (goalItem: GoalsType) => void
 }
 
-const Goal: React.FC<PropsType & GoalsType> = ({
-                                                 id, goalName, units, goalValue, currentValue,
-                                                 deleteGoal, moveGoalUp, moveGoalDown, changeGoal
+const Goal: React.FC<PropsType & GoalsType & any> = ({
+                                                       goal, deleteGoal, moveGoalUp, moveGoalDown, changeGoal
                                                }) => {
 
   // формирую объект с актуальным объектом goal, для изменения в setGoals
   const makeGoal = (itemValue: string | number, itemKey: string): any => {
-    const goal = {
-      id: id,
-      goalName: goalName,
-      units: units,
-      goalValue: goalValue,
-      currentValue: currentValue
-    };
-
     switch (itemKey) {
       case 'goalName':
         return {
@@ -60,18 +51,18 @@ const Goal: React.FC<PropsType & GoalsType> = ({
     changeGoal(goal);
   };
 
-  const progressValue = Math.round(currentValue / goalValue * 100)
+  const progressValue = Math.round(goal.currentValue / goal.goalValue * 100)
 
   return (
     <tr>
-      <GoalItem itemKey={'goalName'} goalItemProp={goalName} changeGoalItem={changeGoalItem}/>
-      <GoalItem itemKey={'units'} goalItemProp={units} changeGoalItem={changeGoalItem}/>
-      <GoalItem itemKey={'goalValue'} goalItemProp={goalValue} changeGoalItem={changeGoalItem}/>
-      <GoalItem itemKey={'currentValue'} goalItemProp={currentValue} changeGoalItem={changeGoalItem}/>
+      <GoalItem itemKey={'goalName'} goalItemProp={goal.goalName} changeGoalItem={changeGoalItem}/>
+      <GoalItem itemKey={'units'} goalItemProp={goal.units} changeGoalItem={changeGoalItem}/>
+      <GoalItem itemKey={'goalValue'} goalItemProp={goal.goalValue} changeGoalItem={changeGoalItem}/>
+      <GoalItem itemKey={'currentValue'} goalItemProp={goal.currentValue} changeGoalItem={changeGoalItem}/>
       <td>{progressValue ? progressValue + '%' : '-'}</td>
-      <td><Button outline color="secondary" size="sm" onClick={() => deleteGoal(id)}>x</Button></td>
-      <td onClick={() => moveGoalUp(id)}>&#8593;</td>
-      <td onClick={() => moveGoalDown(id)}>&#8595;</td>
+      <td><Button outline color="secondary" size="sm" onClick={() => deleteGoal(goal.id)}>x</Button></td>
+      <td onClick={() => moveGoalUp(goal.id)}>&#8593;</td>
+      <td onClick={() => moveGoalDown(goal.id)}>&#8595;</td>
     </tr>
   );
 };
