@@ -11,10 +11,7 @@ type PropsType = {
 };
 
 export const NewGoalModal: React.FC<PropsType> = (props) => {
-  const {
-    buttonLabel,
-    className
-  } = props;
+  const { buttonLabel, className } = props;
 
   const { addGoal } = useContext(AppStateContext);
 
