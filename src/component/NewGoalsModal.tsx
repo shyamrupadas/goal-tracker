@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import NewGoalForm from './NewGoalForm';
 import { v4 as uuidv4 } from 'uuid';
 import { GoalsItemType } from '../types/types';
+import { AppStateContext } from '../context';
 
-const NewGoalModal = ({addGoal, ...props}: any) => {
+const NewGoalModal = (props: any) => {
   const {
     buttonLabel,
     className
   } = props;
+
+  const { addGoal }: any = useContext(AppStateContext);
 
   const [modal, setModal] = useState(false);
 
@@ -33,7 +36,7 @@ const NewGoalModal = ({addGoal, ...props}: any) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Создать новую цель</ModalHeader>
         <ModalBody>
-          <NewGoalForm handleSubmit={handleSubmit}/>
+          <NewGoalForm handleSubmit={handleSubmit} />
         </ModalBody>
       </Modal>
     </div>

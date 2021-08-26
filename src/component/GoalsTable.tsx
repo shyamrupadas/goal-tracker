@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Table } from 'reactstrap';
 import Goal from './Goal';
 import { GoalsItemType } from '../types/types';
+import { AppStateContext } from '../context';
 
-type GoalsTablePropsType = {
-  goals: [GoalsItemType]
-  deleteGoal: (id: string) => void
-  moveGoalUp: (id: string) => void
-  moveGoalDown: (id: string) => void
-  changeGoal: (goalItem: GoalsItemType) => void
-};
+const GoalsTable: React.FC = () => {
 
-const GoalsTable: React.FC<GoalsTablePropsType> = ({ goals, deleteGoal, moveGoalUp, moveGoalDown, changeGoal }) => {
+  const { goals }: any = useContext(AppStateContext);
 
   const goalElements = goals.map((g: GoalsItemType) => <Goal
-    key={g.id} goal={g} deleteGoal={deleteGoal}
-    moveGoalUp={moveGoalUp} moveGoalDown={moveGoalDown} changeGoal={changeGoal} />);
+    key={g.id} goal={g} />);
 
   return (
     <Table hover>

@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import './App.css';
-import NewGoalModal from './component/Modal';
+import NewGoalModal from './component/NewGoalsModal';
 import GoalsTable from './component/GoalsTable';
 import { GoalsItemType } from './types/types';
+import { AppContextType, AppStateContext } from './context';
 
 function App() {
 
@@ -48,16 +49,24 @@ function App() {
     updateGoals(newGoals);
   }, [goals]);
 
-  return (
+  const context: AppContextType | undefined = {
+    addGoal,
+    deleteGoal,
+    moveGoalUp,
+    moveGoalDown,
+    changeGoal,
+    goals
+  };
+
+  return <AppStateContext.Provider value={context}>
     <div className='App'>
       <div className='AppContainer'>
         <h1>Трекер целей на неделю</h1>
-        <NewGoalModal buttonLabel={'Добавьте цель'} addGoal={addGoal} />
-        <GoalsTable goals={goals} deleteGoal={deleteGoal} moveGoalUp={moveGoalUp}
-                    moveGoalDown={moveGoalDown} changeGoal={changeGoal} />
+        <NewGoalModal buttonLabel={'Добавьте цель'} />
+        <GoalsTable />
       </div>
     </div>
-  );
+  </AppStateContext.Provider>
 }
 
 export default App;

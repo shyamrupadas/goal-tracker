@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'reactstrap';
 import GoalItem from './GoalItem'
 import { GoalsItemType } from '../types/types';
+import { AppStateContext } from '../context';
 
 type PropsType = {
-  key: string
   goal: GoalsItemType
-  deleteGoal: (id: string) => void
-  moveGoalUp: (id: string) => void
-  moveGoalDown: (id: string) => void
-  changeGoal: (goalItem: GoalsItemType) => void
-}
+};
 
-const Goal: React.FC<PropsType> = ({
-                                     goal, deleteGoal, moveGoalUp, moveGoalDown, changeGoal
-                                   }) => {
+const Goal: React.FC<PropsType> = ({ goal }) => {
+
+  const {deleteGoal, moveGoalUp, moveGoalDown, changeGoal}: any = useContext(AppStateContext);
 
   // формирую объект с актуальным объектом goal, для изменения в setGoals
   const makeGoal = (itemValue: string | number, itemKey: string): any => {
