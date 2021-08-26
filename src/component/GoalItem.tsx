@@ -1,4 +1,5 @@
 import React, { KeyboardEvent, useState } from 'react';
+import { Input } from 'reactstrap';
 
 type PropsType = {
   itemKey: string,
@@ -28,7 +29,7 @@ const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }
   return (
     <td onDoubleClick={activateEditMode}>{
       editMode
-        ? <input onChange={(e) => setGoalItemValue(e.target.value)}
+        ? <Input onChange={(e) => setGoalItemValue(e.target.value)}
                  onKeyPress={e => keyPress(e)} onBlur={deactivateEditMode}
                  type="text" value={goalItemValue}/>
         : goalItemValue}</td>

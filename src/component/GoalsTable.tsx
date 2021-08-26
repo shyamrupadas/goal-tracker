@@ -20,6 +20,7 @@ const GoalsTable: React.FC = () => {
         <th>Цель на неделю</th>
         <th>Сделано</th>
         <th>Прогресс</th>
+        <th colSpan={3}/>
       </tr>
       </thead>
       <tbody>

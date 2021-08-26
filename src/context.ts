@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoalsItemType } from './types/types';
+import { GoalsItemType, GoalsType } from './types/types';
 
 export type AppContextType = {
   addGoal: (goalItem: GoalsItemType) => void
@@ -7,8 +7,15 @@ export type AppContextType = {
   moveGoalUp: (id: string) => void
   moveGoalDown: (id: string) => void
   changeGoal: (goalItem: GoalsItemType) => void
-  goals: [GoalsItemType]
+  goals: GoalsType[]
 };
 
-export const AppStateContext = React.createContext<AppContextType | undefined>(undefined);
+export const AppStateContext = React.createContext<AppContextType>({
+  addGoal: (goalItem: GoalsItemType) => {},
+  deleteGoal: (id: string) => {},
+  moveGoalUp: (id: string) => {},
+  moveGoalDown: (id: string) => {},
+  changeGoal: (goalItem: GoalsItemType) => {},
+  goals: []
+});
 
