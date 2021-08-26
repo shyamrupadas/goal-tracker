@@ -7,7 +7,7 @@ type PropsType = {
   changeGoalItem: (goalItem: string | number, itemKey: string) => void
 }
 
-const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }) => {
+export const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }) => {
 
   const [goalItemValue, setGoalItemValue] = useState(goalItemProp);
 
@@ -34,6 +34,4 @@ const GoalItem: React.FC<PropsType> = ({ itemKey, goalItemProp, changeGoalItem }
                  type="text" value={goalItemValue}/>
         : goalItemValue}</td>
   )
-}
-
-export default GoalItem;
+};

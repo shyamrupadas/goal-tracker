@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import './App.css';
-import NewGoalModal from './component/NewGoalsModal';
-import GoalsTable from './component/GoalsTable';
+import { NewGoalModal } from './component/NewGoalsModal';
+import { GoalsTable } from './component/GoalsTable';
 import { GoalsItemType } from './types/types';
 import { AppContextType, AppStateContext } from './context';
 
@@ -62,8 +62,8 @@ function App() {
     <div className='App'>
       <div className='AppContainer'>
         <h1>Трекер целей на неделю</h1>
-        <NewGoalModal buttonLabel={'Добавьте цель'} />
         <GoalsTable />
+        <NewGoalModal buttonLabel={'Добавьте цель'} />
       </div>
     </div>
   </AppStateContext.Provider>

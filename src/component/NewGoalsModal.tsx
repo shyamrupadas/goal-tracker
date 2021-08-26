@@ -1,17 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import NewGoalForm from './NewGoalForm';
+import { NewGoalForm } from './NewGoalForm';
 import { v4 as uuidv4 } from 'uuid';
 import { GoalsItemType } from '../types/types';
 import { AppStateContext } from '../context';
 
-const NewGoalModal = (props: any) => {
+type PropsType = {
+  buttonLabel: string
+  className?: string
+};
+
+export const NewGoalModal: React.FC<PropsType> = (props) => {
   const {
     buttonLabel,
     className
   } = props;
 
-  const { addGoal }: any = useContext(AppStateContext);
+  const { addGoal } = useContext(AppStateContext);
 
   const [modal, setModal] = useState(false);
 
@@ -41,6 +46,4 @@ const NewGoalModal = (props: any) => {
       </Modal>
     </div>
   );
-}
-
-export default NewGoalModal;
+};

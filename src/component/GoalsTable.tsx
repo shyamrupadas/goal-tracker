@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import { Table } from 'reactstrap';
-import Goal from './Goal';
-import { GoalsItemType } from '../types/types';
+import { Goal } from './Goal';
 import { AppStateContext } from '../context';
 
-const GoalsTable: React.FC = () => {
+export const GoalsTable: React.FC = () => {
 
-  const { goals }: any = useContext(AppStateContext);
+  const { goals } = useContext(AppStateContext);
 
-  const goalElements = goals.map((g: GoalsItemType) => <Goal
+  const goalElements = goals.map((g) => <Goal
     key={g.id} goal={g} />);
 
   return (
@@ -29,6 +28,4 @@ const GoalsTable: React.FC = () => {
     </Table>
 
   );
-}
-
-export default GoalsTable;
+};

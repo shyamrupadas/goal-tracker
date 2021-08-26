@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Progress } from 'reactstrap';
-import GoalItem from './GoalItem'
+import { GoalItem } from './GoalItem'
 import { GoalsItemType } from '../types/types';
 import { AppStateContext } from '../context';
 
@@ -8,7 +8,7 @@ type PropsType = {
   goal: GoalsItemType
 };
 
-const Goal: React.FC<PropsType> = ({ goal }) => {
+export const Goal: React.FC<PropsType> = ({ goal }) => {
 
   const {deleteGoal, moveGoalUp, moveGoalDown, changeGoal}: any = useContext(AppStateContext);
 
@@ -63,5 +63,3 @@ const Goal: React.FC<PropsType> = ({ goal }) => {
     </tr>
   );
 };
-
-export default Goal;

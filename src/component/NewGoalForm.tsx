@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const NewGoalForm = ({ handleSubmit }: any) => {
+export const NewGoalForm = ({ handleSubmit }: any) => {
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -24,6 +24,4 @@ const NewGoalForm = ({ handleSubmit }: any) => {
       <Button color="primary">Добавить</Button>
     </Form>
   );
-}
-
-export default NewGoalForm;
+};
