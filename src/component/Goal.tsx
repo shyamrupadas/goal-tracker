@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Progress } from 'reactstrap';
 import GoalItem from './GoalItem'
 import { GoalsItemType } from '../types/types';
 import { AppStateContext } from '../context';
@@ -56,7 +56,7 @@ const Goal: React.FC<PropsType> = ({ goal }) => {
       <GoalItem itemKey={'units'} goalItemProp={goal.units} changeGoalItem={changeGoalItem} />
       <GoalItem itemKey={'goalValue'} goalItemProp={goal.goalValue} changeGoalItem={changeGoalItem} />
       <GoalItem itemKey={'currentValue'} goalItemProp={goal.currentValue} changeGoalItem={changeGoalItem} />
-      <td>{progressValue ? progressValue + '%' : '-'}</td>
+      <td><Progress value={progressValue}/></td>
       <td><Button outline color="secondary" size="sm" onClick={() => deleteGoal(goal.id)}>x</Button></td>
       <td onClick={() => moveGoalUp(goal.id)}>&#8593;</td>
       <td onClick={() => moveGoalDown(goal.id)}>&#8595;</td>
