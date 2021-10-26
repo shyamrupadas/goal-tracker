@@ -25,6 +25,7 @@ Typescript, React.js, Custom Hooks, Reactstrap.<br>
 ## Todo
 * Добавить backend.
 * Добавить регистрацию и авторизацию.
+* Добавить Redux.
 
 ## Available Scripts
 
