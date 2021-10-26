@@ -1,11 +1,11 @@
 # Goal tracker
 
-### Тестовое задание в Insight-systems
-Постановка и отслеживание целей на неделю
+## Тестовое задание для Insight-systems
+Постановка и отслеживание целей на неделю.
 
 Демо: https://test-goal-tracker.netlify.app/
 
-### Используемые технологии:
+## Используемые технологии:
 
 Typescript, React.js, Custom Hooks, Reactstrap.<br>
 Управление состоянием - React Context.<br>
